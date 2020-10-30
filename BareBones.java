@@ -1,10 +1,14 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.nio.file.Path;
 import java.util.*;
 
 public class BareBones {
 
+  //Gets the file text in an array
+  //puts it into the enterpreter
+  //then gets the variable hashmap and prints each value
   public static void main(String[] args) {
     String[] reader = parseText(fileSelect());
     Interpreter calculator = new Interpreter(reader);
@@ -52,7 +56,8 @@ public class BareBones {
     String path = new File(".").getAbsolutePath();
 
     openText = new JFileChooser(path);
-
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("BAREBONES", "bb", "bbx");
+    openText.setFileFilter(filter);
     int returnVal = openText.showOpenDialog(null);
     if(returnVal == JFileChooser.APPROVE_OPTION){
       return openText.getSelectedFile().toPath();
